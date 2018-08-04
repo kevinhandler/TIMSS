@@ -9,9 +9,10 @@
     <result column="ach_rank" property="achRank" jdbcType="VARCHAR" />
     <result column="ach_attch" property="achAttch" jdbcType="VARCHAR" />
     <result column="ach_checktime" property="achChecktime" jdbcType="DATE" />
+    <result column="ach_status" property="achStatus" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ach_id, tp_id, ach_content, ach_extension, ach_rank, ach_attch, ach_checktime
+    ach_id, tp_id, ach_content, ach_extension, ach_rank, ach_attch, ach_checktime, ach_status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.yc.tims.po.TimsAchievement" >
     insert into tims_achievement (ach_id, tp_id, ach_content, 
       ach_extension, ach_rank, ach_attch, 
-      ach_checktime)
+      ach_checktime, ach_status)
     values (#{achId,jdbcType=INTEGER}, #{tpId,jdbcType=INTEGER}, #{achContent,jdbcType=VARCHAR}, 
       #{achExtension,jdbcType=VARCHAR}, #{achRank,jdbcType=VARCHAR}, #{achAttch,jdbcType=VARCHAR}, 
-      #{achChecktime,jdbcType=DATE})
+      #{achChecktime,jdbcType=DATE}, #{achStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yc.tims.po.TimsAchievement" >
     insert into tims_achievement
@@ -55,6 +56,9 @@
       <if test="achChecktime != null" >
         ach_checktime,
       </if>
+      <if test="achStatus != null" >
+        ach_status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="achId != null" >
@@ -77,6 +81,9 @@
       </if>
       <if test="achChecktime != null" >
         #{achChecktime,jdbcType=DATE},
+      </if>
+      <if test="achStatus != null" >
+        #{achStatus,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -101,6 +108,9 @@
       <if test="achChecktime != null" >
         ach_checktime = #{achChecktime,jdbcType=DATE},
       </if>
+      <if test="achStatus != null" >
+        ach_status = #{achStatus,jdbcType=VARCHAR},
+      </if>
     </set>
     where ach_id = #{achId,jdbcType=INTEGER}
   </update>
@@ -111,7 +121,8 @@
       ach_extension = #{achExtension,jdbcType=VARCHAR},
       ach_rank = #{achRank,jdbcType=VARCHAR},
       ach_attch = #{achAttch,jdbcType=VARCHAR},
-      ach_checktime = #{achChecktime,jdbcType=DATE}
+      ach_checktime = #{achChecktime,jdbcType=DATE},
+      ach_status = #{achStatus,jdbcType=VARCHAR}
     where ach_id = #{achId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -3,7 +3,6 @@ package com.yc.tims.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.yc.tims.po.TimsRecommend;
-
 @Mapper
 public interface TimsRecommendMapper {
     int deleteByPrimaryKey(Integer rId);

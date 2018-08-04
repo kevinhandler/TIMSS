@@ -12,6 +12,7 @@
     <result column="emp_graduateTime" property="empGraduatetime" jdbcType="DATE" />
     <result column="emp_major" property="empMajor" jdbcType="VARCHAR" />
     <result column="emp_jobPosition" property="empJobposition" jdbcType="VARCHAR" />
+    <result column="emp_status" property="empStatus" jdbcType="VARCHAR" />
     <result column="emp_workTime" property="empWorktime" jdbcType="DATE" />
     <result column="emp_qualification" property="empQualification" jdbcType="VARCHAR" />
     <result column="emp_qualificationTime" property="empQualificationtime" jdbcType="DATE" />
@@ -25,8 +26,9 @@
   </resultMap>
   <sql id="Base_Column_List" >
     emp_id, emp_organ, emp_name, emp_sex, emp_native, emp_graduateSchool, emp_cultureStandand, 
-    emp_graduateTime, emp_major, emp_jobPosition, emp_workTime, emp_qualification, emp_qualificationTime, 
-    emp_identify, emp_idcard, emp_rank, emp_series, emp_birthday, emp_remark, emp_password
+    emp_graduateTime, emp_major, emp_jobPosition, emp_status, emp_workTime, emp_qualification, 
+    emp_qualificationTime, emp_identify, emp_idcard, emp_rank, emp_series, emp_birthday, 
+    emp_remark, emp_password
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -34,8 +36,6 @@
     from tims_emp
     where emp_id = #{empId,jdbcType=INTEGER}
   </select>
-  
-  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer"></select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tims_emp
     where emp_id = #{empId,jdbcType=INTEGER}
@@ -44,17 +44,19 @@
     insert into tims_emp (emp_id, emp_organ, emp_name, 
       emp_sex, emp_native, emp_graduateSchool, 
       emp_cultureStandand, emp_graduateTime, emp_major, 
-      emp_jobPosition, emp_workTime, emp_qualification, 
-      emp_qualificationTime, emp_identify, emp_idcard, 
-      emp_rank, emp_series, emp_birthday, 
-      emp_remark, emp_password)
+      emp_jobPosition, emp_status, emp_workTime, 
+      emp_qualification, emp_qualificationTime, emp_identify, 
+      emp_idcard, emp_rank, emp_series, 
+      emp_birthday, emp_remark, emp_password
+      )
     values (#{empId,jdbcType=INTEGER}, #{empOrgan,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
       #{empSex,jdbcType=VARCHAR}, #{empNative,jdbcType=VARCHAR}, #{empGraduateschool,jdbcType=VARCHAR}, 
       #{empCulturestandand,jdbcType=VARCHAR}, #{empGraduatetime,jdbcType=DATE}, #{empMajor,jdbcType=VARCHAR}, 
-      #{empJobposition,jdbcType=VARCHAR}, #{empWorktime,jdbcType=DATE}, #{empQualification,jdbcType=VARCHAR}, 
-      #{empQualificationtime,jdbcType=DATE}, #{empIdentify,jdbcType=VARCHAR}, #{empIdcard,jdbcType=VARCHAR}, 
-      #{empRank,jdbcType=VARCHAR}, #{empSeries,jdbcType=VARCHAR}, #{empBirthday,jdbcType=DATE}, 
-      #{empRemark,jdbcType=VARCHAR}, #{empPassword,jdbcType=VARCHAR})
+      #{empJobposition,jdbcType=VARCHAR}, #{empStatus,jdbcType=VARCHAR}, #{empWorktime,jdbcType=DATE}, 
+      #{empQualification,jdbcType=VARCHAR}, #{empQualificationtime,jdbcType=DATE}, #{empIdentify,jdbcType=VARCHAR}, 
+      #{empIdcard,jdbcType=VARCHAR}, #{empRank,jdbcType=VARCHAR}, #{empSeries,jdbcType=VARCHAR}, 
+      #{empBirthday,jdbcType=DATE}, #{empRemark,jdbcType=VARCHAR}, #{empPassword,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yc.tims.po.TimsEmp" >
     insert into tims_emp
@@ -88,6 +90,9 @@
       </if>
       <if test="empJobposition != null" >
         emp_jobPosition,
+      </if>
+      <if test="empStatus != null" >
+        emp_status,
       </if>
       <if test="empWorktime != null" >
         emp_workTime,
@@ -151,6 +156,9 @@
       <if test="empJobposition != null" >
         #{empJobposition,jdbcType=VARCHAR},
       </if>
+      <if test="empStatus != null" >
+        #{empStatus,jdbcType=VARCHAR},
+      </if>
       <if test="empWorktime != null" >
         #{empWorktime,jdbcType=DATE},
       </if>
@@ -213,6 +221,9 @@
       <if test="empJobposition != null" >
         emp_jobPosition = #{empJobposition,jdbcType=VARCHAR},
       </if>
+      <if test="empStatus != null" >
+        emp_status = #{empStatus,jdbcType=VARCHAR},
+      </if>
       <if test="empWorktime != null" >
         emp_workTime = #{empWorktime,jdbcType=DATE},
       </if>
@@ -257,6 +268,7 @@
       emp_graduateTime = #{empGraduatetime,jdbcType=DATE},
       emp_major = #{empMajor,jdbcType=VARCHAR},
       emp_jobPosition = #{empJobposition,jdbcType=VARCHAR},
+      emp_status = #{empStatus,jdbcType=VARCHAR},
       emp_workTime = #{empWorktime,jdbcType=DATE},
       emp_qualification = #{empQualification,jdbcType=VARCHAR},
       emp_qualificationTime = #{empQualificationtime,jdbcType=DATE},

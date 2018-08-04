@@ -1,6 +1,7 @@
 package com.yc.tims.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.yc.tims.po.TimsEmp;
@@ -18,7 +19,7 @@ public interface TimsEmpMapper {
     int updateByPrimaryKeySelective(TimsEmp record);
 
     int updateByPrimaryKey(TimsEmp record);
+    
     @Select("SELECT e.* ,ur.role_id from tims_emp  e , user_role ur where e.emp_id = ur.user_id and e.emp_name =#{name} and e.emp_password=#{password}")
-    TimsEmp isLogin(String name,String password);
-   
+    TimsEmp isLogin(@Param("name")String name,@Param("password")String password);
 }

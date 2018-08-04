@@ -1,129 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>approveProject</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/css/pop.css}">
 <script th:src="@{js/jquery.js}"></script>
+<style type="text/css">
+.poptable tr {
+	height: 20px;
+}
+
+/*设置文本框无边框*/
+.textInfo {
+	width: 227px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-color: 0px;
+}
+/* ._select{ */
+/* 	height: 26px; */
+/* 	line-height: 26px; */
+/* } */
+.pagination {
+	margin: 8px 1px;
+	overflow: hidden;
+	text-align: right;
+	float: left;
+}
+</style>
+<script type="text/javascript">
+	function showDetail(paId) {
+		$.post("findProjectApply", {
+			paId : paId
+		}, function(data) {
+			console.info(data.paName);
+			var str = "";
+			str='<tr><td align="right">项目名称：</td><td align="left"><input class="textInfo" type="text" name="paName" value='+data.paName+'/></td>'+
+			'</tr>'+
+			' <tr><td align="right">项目类别：</td><td align="left"><input class="textInfo" type="text" name="paSort" value="'+data.paSort+'" /></td></tr>'+
+			'<tr><td align="right">申报单位：</td><td align="left"><input class="textInfo" type="text" name="paOrgan" value='+data.paOrgan+' /></td></tr>'+
+			'<tr><td align="right">申报组长：</td><td align="left"><input class="textInfo" type="text" name="paLeader" value='+data.paLeader+' /></td></tr>'+
+			'<tr><td align="right">申报经费：</td><td align="left"><input class="textInfo" type="text" name="paFunds" value='+data.paFunds+' /></td></tr>'+
+			'<tr><td align="right">内容：</td><td align="left"><textarea rows="2" name="paContent" >'+data.paContent+'</textarea> </td></tr>'+
+			'<tr><td align="right">备注：</td><td align="left"><textarea rows="2" name="paContent"name="paRemark" id="paRemark"> '+data.paRemark+'</textarea></td></tr>'+
+			'<tr><td align="right">附件：</td><td align="left"><input class="textInfo" type="text" name="paAttach" value='+data.paAttrch+' / ></td></tr>'+
+			'<tr><td align="right">领导审批意见：</td><td align="left"><textarea name="leaderoption"id="leaderoption"></textarea></td></tr>'+
+			'<tr><td align="right">科技人员审批意见：</td><td align="left"><textarea name="scientistoption"id="scientistoption"></textarea></td></tr>'+
+			'<tr><td align="right">立项状态：</td><td align="left"><input class="textInfo" type="text" name="paStatus" value='+data.paStatus+' /></td></tr> ';
+			
+			$("#poptable").html("").append($(str));
+			$(".pop_bg").fadeIn();
+		},"json");
+
+	}
+</script>
 </head>
 <body>
 	<section class="mtb">
-		
-		<input type="text" class="textbox textbox_225" placeholder="请输入项目名称..." /> 
-		<input type="button" value="查询" class="group_btn" />
+		<form action="showApproveProject" method="post">
+			项目名称:<input type="text" name="paName" id="paName"
+				class="textbox textbox_84" placeholder="请输入项目名称..." /> 类别:<select
+				class="select" name="paSort" id="paSort">
+				<option value="油气勘探">油气勘探</option>
+				<option value=地质研究>地质研究</option>
+				<option value="油藏工程研究与评价">油藏工程研究与评价</option>
+				<option value="油气开采及新技术">油气开采及新技术</option>
+				<option value="节能环保">节能环保</option>
+				<option value="信息化">信息化</option>
+				<option value="其他">其他</option>
+			</select> 申报单位:<input type="text" name="paOrgan" id="paOrgan"
+				class="textbox textbox_84" placeholder="请输入项目名称..." /> <input
+				type="submit" value="查询" class="group_btn" />
+		</form>
 	</section>
 	<table class="table">
 		<tr>
+			<th>项目编号</th>
 			<th>项目名称</th>
 			<th>类别</th>
 			<th>申报单位</th>
 			<th>项目组长</th>
 			<th>申报经费（万元）</th>
-			<th>立项状态</th>
+
 			<th>操作</th>
 		</tr>
-		<tr align="center">
-			<td class="center">油气勘探项目</td>
-			<td>油气勘探</td>
-			<td>子北采油厂</td>
-			<td>aa</td>
-			<td class="center"><strong>10,0</strong></td>
-			<td class="center">已审批</td>
-			<td class="center">
-				<a href="#" title="详情" class="link_icon" id="detail">&#118;</a> 
-			</td>
+		<tr align="center" th:each="pa:${pageInfo.list}">
+			<td class="center" th:text="${pa.paId}"></td>
+			<td class="center" th:text="${pa.paName}">油气勘探项目</td>
+			<td th:text="${pa.paSort}">油气勘探</td>
+			<td th:text="${pa.paOrgan}">子北采油厂</td>
+			<td th:text="${pa.paLeader}">aa</td>
+			<td class="center"><strong th:text="${pa.paFunds}">10.0</strong></td>
+
+			<td class="center"><a href="#" title="详情" class="link_icon"
+				id="detail" th:onclick="'javascript:showDetail('+${pa.paId}+')'">&#118;</a></td>
 		</tr>
 	</table>
 	<aside class="paging">
-		<a href="#">第一页</a> 
-		<a>1</a> 
-		<a>2</a> 
-		<a>3</a> 
-		<a>…</a> 
-		<a>1004</a> 
-		<a>最后一页</a>
+		<ul style="margin-left: 700px;">
+			<li class="pagination"><a th:href="@{showApproveProject}">首页</a></li>
+			<li class="pagination"><a
+				th:href="@{'showApproveProject?n='+${pageInfo.prePage}}">上一页</a></li>
+			<li class="pagination" th:each="num:${pageInfo.navigatepageNums}"><a
+				th:href="@{'showApproveProject?n='+${num}}" th:text="${num}"></a></li>
+			<li class="pagination"><a
+				th:href="@{'showApproveProject?n='+${pageInfo.nextPage}}"> 下一页</a></li>
+			<li class="pagination"><a
+				th:href="@{'showApproveProject?n='+${pageInfo.prePage}}"> 尾页</a></li>
+		</ul>
+
 	</aside>
-	
 	<section class="pop_bg">
-    	<div class="pop_cont">
-       		<h3>立项审批详情</h3>
-       		<!--content-->
-       		<div class="pop_cont_input">
-       			<table>
-       			<tr>
-      				<td align="right">项目名称：</td>
-      				<td align="left"><input type="text" name="name" id="name"/></td>
-    			</tr>
-    			<tr>
-      				<td align="right">项目类别：</td>
-      				<td align="left"><input type="text" name="sort" id="sort"/></td>
-    			</tr>
-    			<tr>
-      				<td align="right">申报单位：</td>
-      				<td align="left"><input type="text" name="organ" id="organ"/></td>
-    			</tr>
-    			<tr>
-      				<td align="right">申报组长：</td>
-      				<td align="left"><input type="text" name="leader" id="leader"/></td>
-    			</tr>
-    			<tr>
-      				<td align="right">申报经费：</td>
-      				<td align="left"><input type="text" name="funds" id="funds"/></td>
-    			</tr>
-    			<tr>
-      				<td align="right">内容：</td>
-      				<td align="left"><textarea rows="2" name="content" id="content"></textarea></td>
-    			</tr>
-    			<tr>
-      				<td align="right">备注：</td>
-      				<td align="left"><textarea rows="2" name="remark" id="remark"></textarea></td>
-    			</tr>
-    			<tr>
-      				<td align="right">附件：</td>
-      				<td align="left"><input type="text" name="attach" id="attach"/></td>
-    			</tr>
-    			<tr>
-      				<td align="right">领导审批意见：</td>
-      				<td align="left"><textarea placeholder="请输入评审意见..."  name="leaderoption" id="leaderoption"></textarea></td>
-    			</tr>
-    			<tr>
-      				<td align="right">科技人员审批意见：</td>
-      				<td align="left"><textarea placeholder="请输入评审意见..." name="scientistoption" id="scientistoption"></textarea></td>
-    			</tr>
-    			<tr>
-      				<td align="right">立项状态：</td>
-      				<td align="left"><input type="text" name="status" id="status"/></td>
-    			</tr>
-       			</table>
-       		</div>
-        	
-       		
-       		<!--bottom:operate->button-->
-       		<div class="btm_btn">
-        	<input type="button" value="审批通过" class="input_btn trueBtn"/>
-        	<input type="button" value="返回修改" class="input_btn falseBtn"/>
-        	<input type="button" value="审批未通过" class="input_btn falseBtn" />
-       		</div>
-      	</div>
+		
+			<div class="pop_cont">
+			<form action="updateProjectApply" method="post" id="updateProjectApply">
+				<h3>立项审批详情</h3>
+				<!--content-->
+				<div class="pop_cont_input">
+					<table class="poptable" id ="poptable" >
+						<!-- <tr>
+							<td align="right">项目名称：</td>
+							<td align="left"><input class="textInfo" type="text" name="paName"/></td>
+						</tr>
+						 <tr>
+							<td align="right">项目类别：</td>
+							<td align="left"><input class="textInfo" type="text"
+								name="paSort" /></td>
+						</tr>
+						<tr>
+							<td align="right">申报单位：</td>
+							<td align="left"><input class="textInfo" type="text"
+								name="paOrgan" /></td>
+						</tr>
+						<tr>
+							<td align="right">申报组长：</td>
+							<td align="left"><input class="textInfo" type="text"
+								name="paLeader" /></td>
+						</tr>
+						<tr>
+							<td align="right">申报经费：</td>
+							<td align="left"><input class="textInfo" type="text"
+								name="paFunds" /></td>
+						</tr>
+						<tr>
+							<td align="right">内容：</td>
+							<td align="left"><textarea rows="2" name="paContent"></textarea></td>
+						</tr>
+						<tr>
+							<td align="right">备注：</td>
+							<td align="left"><textarea rows="2" name="paContent"
+									name="paRemark" id="paRemark"></textarea></td>
+						</tr>
+						<tr>
+							<td align="right">附件：</td>
+							<td align="left"><input class="textInfo" type="text"
+								name="paAttach" /></td>
+						</tr>
+						<tr>
+							<td align="right">领导审批意见：</td>
+							<td align="left"><textarea name="leaderoption"
+									id="leaderoption"></textarea></td>
+						</tr>
+						<tr>
+							<td align="right">科技人员审批意见：</td>
+							<td align="left"><textarea name="scientistoption"
+									id="scientistoption"></textarea></td>
+						</tr>
+						<tr>
+							<td align="right">立项状态：</td>
+							<td align="left"><input class="textInfo" type="text"
+								name="paStatus" /></td>
+						</tr>  -->
+					</table>
+				</div>
+
+				<!--bottom:operate->button-->
+				<div class="btm_btn">
+					<input type="submit" value="审批通过" class="input_btn trueBtn"  /> <input
+						type="button" value="返回修改" class="input_btn falseBtn" /> <input
+						type="button" value="审批未通过" class="input_btn falseBtn" onclick="updateProject()" />
+				</div>
+				</form>
+			</div>
+		
 	</section>
 </body>
 <script>
-$(document).ready(function() {
-	 //弹出文本性提示框
-	 $("#detail").click(function() {
-		 $(".pop_bg").fadeIn();
-	 });
-	 
-	 //弹出：确认按钮
-	 $(".trueBtn").click(function() {
-		 $(".pop_bg").fadeOut();
-	 });
-	 
-	 //弹出：取消或关闭按钮
-	 $(".falseBtn").click(function() {
-		 $(".pop_bg").fadeOut();
-	 });
-});
+	$(document).ready(function() {
+		//弹出文本性提示框
+		// 	 $("#detail").click(function() {
+		// 		 $(".pop_bg").fadeIn();
+		// 	 });
+
+		//弹出：确认按钮
+		$(".trueBtn").click(function() {
+			$(".pop_bg").fadeOut();
+		});
+
+		//弹出：取消或关闭按钮
+		$(".falseBtn").click(function() {
+			$(".pop_bg").fadeOut();
+		});
+	});
 </script>
+
 </html>

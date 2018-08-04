@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.yc.tims.po.TimsProjectapply;
-
 @Mapper
 public interface TimsProjectapplyMapper {
     int deleteByPrimaryKey(Integer paId);
@@ -19,5 +18,7 @@ public interface TimsProjectapplyMapper {
     int updateByPrimaryKeySelective(TimsProjectapply record);
 
     int updateByPrimaryKey(TimsProjectapply record);
-    List<TimsProjectapply> findByPage(Integer n,Integer size,String paName);
+
+	List<TimsProjectapply> findByPage(Integer n, Integer size, String paName, String paSort, String paOrgan,
+			String paStatus);
 }

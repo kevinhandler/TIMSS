@@ -2,6 +2,7 @@ package com.yc.tims.service.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,10 +58,11 @@ public class TimsProjectApplyServiceImpl implements TimsProjectApplyService{
 	 * 分页查询
 	 */
 	@Override
-	public PageInfo findByPage(Integer n, Integer size, String paName) {
+	public PageInfo findByPage(Integer n, Integer size, @Param("paName") String paName, @Param("paSort") String paSort,@Param("paOrgan") String paOrgan,@Param("paStatus") String paStatus) {
 		Page<Object> page = PageHelper.startPage(n, size);
-		page.setOrderBy("paId");
-		List<TimsProjectapply> timsProjectapplys = timsProjectapplyMapper.findByPage(n, size, paName);
+		page.setOrderBy("pa_id");
+		System.out.println("service层：paName:"+paName+"paSort:"+paSort+"paOrgan： "+paOrgan+"pastatus： "+paStatus);
+		List<TimsProjectapply> timsProjectapplys = timsProjectapplyMapper.findByPage(n, size, paName,paSort,paOrgan,paStatus);
 		PageInfo<TimsProjectapply> pageInfo = new PageInfo<TimsProjectapply>(timsProjectapplys);
 		return pageInfo;
 	}

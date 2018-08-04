@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsTechdevelopmentMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsTechdevelopment" >
+    <id column="td_id" property="tdId" jdbcType="INTEGER" />
+    <result column="td_title" property="tdTitle" jdbcType="VARCHAR" />
+    <result column="td_content" property="tdContent" jdbcType="VARCHAR" />
+    <result column="td_time" property="tdTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    td_id, td_title, td_content, td_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_techdevelopment
+    where td_id = #{tdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_techdevelopment
+    where td_id = #{tdId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsTechdevelopment" >
+    insert into tims_techdevelopment (td_id, td_title, td_content, 
+      td_time)
+    values (#{tdId,jdbcType=INTEGER}, #{tdTitle,jdbcType=VARCHAR}, #{tdContent,jdbcType=VARCHAR}, 
+      #{tdTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsTechdevelopment" >
+    insert into tims_techdevelopment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tdId != null" >
+        td_id,
+      </if>
+      <if test="tdTitle != null" >
+        td_title,
+      </if>
+      <if test="tdContent != null" >
+        td_content,
+      </if>
+      <if test="tdTime != null" >
+        td_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tdId != null" >
+        #{tdId,jdbcType=INTEGER},
+      </if>
+      <if test="tdTitle != null" >
+        #{tdTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tdContent != null" >
+        #{tdContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tdTime != null" >
+        #{tdTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsTechdevelopment" >
+    update tims_techdevelopment
+    <set >
+      <if test="tdTitle != null" >
+        td_title = #{tdTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tdContent != null" >
+        td_content = #{tdContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tdTime != null" >
+        td_time = #{tdTime,jdbcType=DATE},
+      </if>
+    </set>
+    where td_id = #{tdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsTechdevelopment" >
+    update tims_techdevelopment
+    set td_title = #{tdTitle,jdbcType=VARCHAR},
+      td_content = #{tdContent,jdbcType=VARCHAR},
+      td_time = #{tdTime,jdbcType=DATE}
+    where td_id = #{tdId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -15,4 +15,6 @@ public interface TimsMessageService {
     int updateByPrimaryKeySelective(TimsMessage record);
 
     int updateByPrimaryKey(TimsMessage record);
+    
+    
 }

@@ -13,15 +13,7 @@ public class TimsRecommend {
 
     private Integer empId;
 
-    
-    
-    @Override
-	public String toString() {
-		return "TimsRecommend [rId=" + rId + ", rTime=" + rTime + ", rRank=" + rRank + ", rName=" + rName + ", empId="
-				+ empId + "]";
-	}
-
-	public Integer getrId() {
+    public Integer getrId() {
         return rId;
     }
 

@@ -25,6 +25,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</databaseIdProvider>
 	<!-- sql映射文件注册 -->
 	<mappers>
-		<package name="com.yc.huose.dao"/>
+		<package name="com.yc.tims.dao"/>
 	</mappers>
 </configuration>

@@ -11,9 +11,9 @@ public class TimsProjectapply {
 
     private String paLeader;
 
-    private String paFunds;
+    private Double paFunds;
 
-    private Double paContent;
+    private String paContent;
 
     private String paRemark;
 
@@ -25,16 +25,7 @@ public class TimsProjectapply {
 
     private String paStatus;
 
-    
-    @Override
-	public String toString() {
-		return "TimsProjectapply [paId=" + paId + ", paName=" + paName + ", paSort=" + paSort + ", paOrgan=" + paOrgan
-				+ ", paLeader=" + paLeader + ", paFunds=" + paFunds + ", paContent=" + paContent + ", paRemark="
-				+ paRemark + ", paAttrch=" + paAttrch + ", paLeaderoption=" + paLeaderoption + ", paScientistoption="
-				+ paScientistoption + ", paStatus=" + paStatus + "]";
-	}
-
-	public Integer getPaId() {
+    public Integer getPaId() {
         return paId;
     }
 
@@ -74,20 +65,20 @@ public class TimsProjectapply {
         this.paLeader = paLeader == null ? null : paLeader.trim();
     }
 
-    public String getPaFunds() {
+    public Double getPaFunds() {
         return paFunds;
     }
 
-    public void setPaFunds(String paFunds) {
-        this.paFunds = paFunds == null ? null : paFunds.trim();
+    public void setPaFunds(Double paFunds) {
+        this.paFunds = paFunds;
     }
 
-    public Double getPaContent() {
+    public String getPaContent() {
         return paContent;
     }
 
-    public void setPaContent(Double paContent) {
-        this.paContent = paContent;
+    public void setPaContent(String paContent) {
+        this.paContent = paContent == null ? null : paContent.trim();
     }
 
     public String getPaRemark() {

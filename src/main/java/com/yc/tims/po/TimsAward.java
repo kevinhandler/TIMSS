@@ -7,14 +7,7 @@ public class TimsAward {
 
     private String aName;
 
-    
-    
-    @Override
-	public String toString() {
-		return "TimsAward [aId=" + aId + ", aRank=" + aRank + ", aName=" + aName + "]";
-	}
-
-	public Integer getaId() {
+    public Integer getaId() {
         return aId;
     }
 

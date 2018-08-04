@@ -3,7 +3,6 @@ package com.yc.tims.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.yc.tims.po.TimsAward;
-
 @Mapper
 public interface TimsAwardMapper {
     int deleteByPrimaryKey(Integer aId);

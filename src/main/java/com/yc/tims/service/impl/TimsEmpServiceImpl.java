@@ -46,7 +46,7 @@ public class TimsEmpServiceImpl implements TimsEmpService{
 		
 		return timsEmpMapper.updateByPrimaryKey(record);
 	}
-
+	
 	@Override
 	public TimsEmp isLogin(String name, String password) {
 		return timsEmpMapper.isLogin(name, password);

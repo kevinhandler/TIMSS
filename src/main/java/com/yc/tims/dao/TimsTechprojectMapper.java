@@ -19,5 +19,6 @@ public interface TimsTechprojectMapper {
     int updateByPrimaryKeySelective(TimsTechproject record);
 
     int updateByPrimaryKey(TimsTechproject record);
-    List<TimsTechproject> findByPage(Integer n, Integer size, String tpName);
+
+	List<TimsTechproject> findByPage(Integer n, Integer size, String tpName);
 }

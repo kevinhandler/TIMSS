@@ -17,16 +17,9 @@ public class TimsAchievement {
 
     private Date achChecktime;
 
-    
-    
-    @Override
-	public String toString() {
-		return "TimsAchievement [achId=" + achId + ", tpId=" + tpId + ", achContent=" + achContent + ", achExtension="
-				+ achExtension + ", achRank=" + achRank + ", achAttch=" + achAttch + ", achChecktime=" + achChecktime
-				+ "]";
-	}
+    private String achStatus;
 
-	public Integer getAchId() {
+    public Integer getAchId() {
         return achId;
     }
 
@@ -80,5 +73,13 @@ public class TimsAchievement {
 
     public void setAchChecktime(Date achChecktime) {
         this.achChecktime = achChecktime;
+    }
+
+    public String getAchStatus() {
+        return achStatus;
+    }
+
+    public void setAchStatus(String achStatus) {
+        this.achStatus = achStatus == null ? null : achStatus.trim();
     }
 }

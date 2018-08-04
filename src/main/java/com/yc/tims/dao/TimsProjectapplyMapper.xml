@@ -7,8 +7,8 @@
     <result column="pa_sort" property="paSort" jdbcType="VARCHAR" />
     <result column="pa_organ" property="paOrgan" jdbcType="VARCHAR" />
     <result column="pa_leader" property="paLeader" jdbcType="VARCHAR" />
-    <result column="pa_funds" property="paFunds" jdbcType="VARCHAR" />
-    <result column="pa_content" property="paContent" jdbcType="DOUBLE" />
+    <result column="pa_funds" property="paFunds" jdbcType="DOUBLE" />
+    <result column="pa_content" property="paContent" jdbcType="VARCHAR" />
     <result column="pa_remark" property="paRemark" jdbcType="VARCHAR" />
     <result column="pa_attrch" property="paAttrch" jdbcType="VARCHAR" />
     <result column="pa_leaderoption" property="paLeaderoption" jdbcType="VARCHAR" />
@@ -25,15 +25,27 @@
     from tims_projectapply
     where pa_id = #{paId,jdbcType=INTEGER}
   </select>
-  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.lang.String">
+   <select id="findByPage" resultMap="BaseResultMap" parameterType="com.yc.tims.po.TimsProjectapply">
   	 select 
     <include refid="Base_Column_List" />
     from tims_projectapply
     <where>
+    	pa_status='未审批' 
     	<if test="paName !=null and paName !=''">
-    		pa_name = #{paName}
+    		and pa_name = #{paName}
+    	</if>
+    	<if test="paSort != null and paSort!=''">
+    		and pa_sort = #{paSort}
+    	</if>
+    	<if test="paOrgan !=null and paOrgan!=''">
+    	    and pa_organ = #{paOrgan}
+    	</if>
+    	<if test ="paStatus !=null and paStatus !=''">
+    		and pa_status =#{paStatus}
     	</if>
     </where>
+    
+    
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -47,8 +59,8 @@
       pa_leaderoption, pa_scientistoption, pa_status
       )
     values (#{paId,jdbcType=INTEGER}, #{paName,jdbcType=VARCHAR}, #{paSort,jdbcType=VARCHAR}, 
-      #{paOrgan,jdbcType=VARCHAR}, #{paLeader,jdbcType=VARCHAR}, #{paFunds,jdbcType=VARCHAR}, 
-      #{paContent,jdbcType=DOUBLE}, #{paRemark,jdbcType=VARCHAR}, #{paAttrch,jdbcType=VARCHAR}, 
+      #{paOrgan,jdbcType=VARCHAR}, #{paLeader,jdbcType=VARCHAR}, #{paFunds,jdbcType=DOUBLE}, 
+      #{paContent,jdbcType=VARCHAR}, #{paRemark,jdbcType=VARCHAR}, #{paAttrch,jdbcType=VARCHAR}, 
       #{paLeaderoption,jdbcType=VARCHAR}, #{paScientistoption,jdbcType=VARCHAR}, #{paStatus,jdbcType=VARCHAR}
       )
   </insert>
@@ -109,10 +121,10 @@
         #{paLeader,jdbcType=VARCHAR},
       </if>
       <if test="paFunds != null" >
-        #{paFunds,jdbcType=VARCHAR},
+        #{paFunds,jdbcType=DOUBLE},
       </if>
       <if test="paContent != null" >
-        #{paContent,jdbcType=DOUBLE},
+        #{paContent,jdbcType=VARCHAR},
       </if>
       <if test="paRemark != null" >
         #{paRemark,jdbcType=VARCHAR},
@@ -147,10 +159,10 @@
         pa_leader = #{paLeader,jdbcType=VARCHAR},
       </if>
       <if test="paFunds != null" >
-        pa_funds = #{paFunds,jdbcType=VARCHAR},
+        pa_funds = #{paFunds,jdbcType=DOUBLE},
       </if>
       <if test="paContent != null" >
-        pa_content = #{paContent,jdbcType=DOUBLE},
+        pa_content = #{paContent,jdbcType=VARCHAR},
       </if>
       <if test="paRemark != null" >
         pa_remark = #{paRemark,jdbcType=VARCHAR},
@@ -176,8 +188,8 @@
       pa_sort = #{paSort,jdbcType=VARCHAR},
       pa_organ = #{paOrgan,jdbcType=VARCHAR},
       pa_leader = #{paLeader,jdbcType=VARCHAR},
-      pa_funds = #{paFunds,jdbcType=VARCHAR},
-      pa_content = #{paContent,jdbcType=DOUBLE},
+      pa_funds = #{paFunds,jdbcType=DOUBLE},
+      pa_content = #{paContent,jdbcType=VARCHAR},
       pa_remark = #{paRemark,jdbcType=VARCHAR},
       pa_attrch = #{paAttrch,jdbcType=VARCHAR},
       pa_leaderoption = #{paLeaderoption,jdbcType=VARCHAR},

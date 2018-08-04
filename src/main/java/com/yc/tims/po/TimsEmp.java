@@ -23,6 +23,8 @@ public class TimsEmp {
 
     private String empJobposition;
 
+    private String empStatus;
+
     private Date empWorktime;
 
     private String empQualification;
@@ -121,6 +123,14 @@ public class TimsEmp {
 
     public void setEmpJobposition(String empJobposition) {
         this.empJobposition = empJobposition == null ? null : empJobposition.trim();
+    }
+
+    public String getEmpStatus() {
+        return empStatus;
+    }
+
+    public void setEmpStatus(String empStatus) {
+        this.empStatus = empStatus == null ? null : empStatus.trim();
     }
 
     public Date getEmpWorktime() {
