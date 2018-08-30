@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsProjectapplyMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsProjectapply" >
+    <id column="pa_id" property="paId" jdbcType="INTEGER" />
+    <result column="pa_sort" property="paSort" jdbcType="VARCHAR" />
+    <result column="tp_id" property="tpId" jdbcType="INTEGER" />
+    <result column="pa_organ" property="paOrgan" jdbcType="VARCHAR" />
+    <result column="pa_leader" property="paLeader" jdbcType="VARCHAR" />
+    <result column="pa_funds" property="paFunds" jdbcType="VARCHAR" />
+    <result column="pa_content" property="paContent" jdbcType="DOUBLE" />
+    <result column="pa_remark" property="paRemark" jdbcType="VARCHAR" />
+    <result column="pa_attrch" property="paAttrch" jdbcType="VARCHAR" />
+    <result column="pa_leaderoption" property="paLeaderoption" jdbcType="VARCHAR" />
+    <result column="pa_scientistoption" property="paScientistoption" jdbcType="VARCHAR" />
+    <result column="pa_status" property="paStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pa_id, pa_sort, tp_id, pa_organ, pa_leader, pa_funds, pa_content, pa_remark, pa_attrch, 
+    pa_leaderoption, pa_scientistoption, pa_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_projectapply
+    where pa_id = #{paId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_projectapply
+    where pa_id = #{paId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsProjectapply" >
+    insert into tims_projectapply (pa_id, pa_sort, tp_id, 
+      pa_organ, pa_leader, pa_funds, 
+      pa_content, pa_remark, pa_attrch, 
+      pa_leaderoption, pa_scientistoption, pa_status
+      )
+    values (#{paId,jdbcType=INTEGER}, #{paSort,jdbcType=VARCHAR}, #{tpId,jdbcType=INTEGER}, 
+      #{paOrgan,jdbcType=VARCHAR}, #{paLeader,jdbcType=VARCHAR}, #{paFunds,jdbcType=VARCHAR}, 
+      #{paContent,jdbcType=DOUBLE}, #{paRemark,jdbcType=VARCHAR}, #{paAttrch,jdbcType=VARCHAR}, 
+      #{paLeaderoption,jdbcType=VARCHAR}, #{paScientistoption,jdbcType=VARCHAR}, #{paStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsProjectapply" >
+    insert into tims_projectapply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paId != null" >
+        pa_id,
+      </if>
+      <if test="paSort != null" >
+        pa_sort,
+      </if>
+      <if test="tpId != null" >
+        tp_id,
+      </if>
+      <if test="paOrgan != null" >
+        pa_organ,
+      </if>
+      <if test="paLeader != null" >
+        pa_leader,
+      </if>
+      <if test="paFunds != null" >
+        pa_funds,
+      </if>
+      <if test="paContent != null" >
+        pa_content,
+      </if>
+      <if test="paRemark != null" >
+        pa_remark,
+      </if>
+      <if test="paAttrch != null" >
+        pa_attrch,
+      </if>
+      <if test="paLeaderoption != null" >
+        pa_leaderoption,
+      </if>
+      <if test="paScientistoption != null" >
+        pa_scientistoption,
+      </if>
+      <if test="paStatus != null" >
+        pa_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paId != null" >
+        #{paId,jdbcType=INTEGER},
+      </if>
+      <if test="paSort != null" >
+        #{paSort,jdbcType=VARCHAR},
+      </if>
+      <if test="tpId != null" >
+        #{tpId,jdbcType=INTEGER},
+      </if>
+      <if test="paOrgan != null" >
+        #{paOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="paLeader != null" >
+        #{paLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="paFunds != null" >
+        #{paFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="paContent != null" >
+        #{paContent,jdbcType=DOUBLE},
+      </if>
+      <if test="paRemark != null" >
+        #{paRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="paAttrch != null" >
+        #{paAttrch,jdbcType=VARCHAR},
+      </if>
+      <if test="paLeaderoption != null" >
+        #{paLeaderoption,jdbcType=VARCHAR},
+      </if>
+      <if test="paScientistoption != null" >
+        #{paScientistoption,jdbcType=VARCHAR},
+      </if>
+      <if test="paStatus != null" >
+        #{paStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsProjectapply" >
+    update tims_projectapply
+    <set >
+      <if test="paSort != null" >
+        pa_sort = #{paSort,jdbcType=VARCHAR},
+      </if>
+      <if test="tpId != null" >
+        tp_id = #{tpId,jdbcType=INTEGER},
+      </if>
+      <if test="paOrgan != null" >
+        pa_organ = #{paOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="paLeader != null" >
+        pa_leader = #{paLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="paFunds != null" >
+        pa_funds = #{paFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="paContent != null" >
+        pa_content = #{paContent,jdbcType=DOUBLE},
+      </if>
+      <if test="paRemark != null" >
+        pa_remark = #{paRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="paAttrch != null" >
+        pa_attrch = #{paAttrch,jdbcType=VARCHAR},
+      </if>
+      <if test="paLeaderoption != null" >
+        pa_leaderoption = #{paLeaderoption,jdbcType=VARCHAR},
+      </if>
+      <if test="paScientistoption != null" >
+        pa_scientistoption = #{paScientistoption,jdbcType=VARCHAR},
+      </if>
+      <if test="paStatus != null" >
+        pa_status = #{paStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pa_id = #{paId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsProjectapply" >
+    update tims_projectapply
+    set pa_sort = #{paSort,jdbcType=VARCHAR},
+      tp_id = #{tpId,jdbcType=INTEGER},
+      pa_organ = #{paOrgan,jdbcType=VARCHAR},
+      pa_leader = #{paLeader,jdbcType=VARCHAR},
+      pa_funds = #{paFunds,jdbcType=VARCHAR},
+      pa_content = #{paContent,jdbcType=DOUBLE},
+      pa_remark = #{paRemark,jdbcType=VARCHAR},
+      pa_attrch = #{paAttrch,jdbcType=VARCHAR},
+      pa_leaderoption = #{paLeaderoption,jdbcType=VARCHAR},
+      pa_scientistoption = #{paScientistoption,jdbcType=VARCHAR},
+      pa_status = #{paStatus,jdbcType=VARCHAR}
+    where pa_id = #{paId,jdbcType=INTEGER}
+  </update>
+</mapper>

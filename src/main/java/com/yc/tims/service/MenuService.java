@@ -1,0 +1,17 @@
+package com.yc.tims.service;
+
+import com.yc.tims.po.Menu;
+
+public interface MenuService {
+	int deleteByPrimaryKey(Integer menuId);
+
+	int insert(Menu record);
+
+	int insertSelective(Menu record);
+
+	Menu selectByPrimaryKey(Integer menuId);
+
+	int updateByPrimaryKeySelective(Menu record);
+
+	int updateByPrimaryKey(Menu record);
+}

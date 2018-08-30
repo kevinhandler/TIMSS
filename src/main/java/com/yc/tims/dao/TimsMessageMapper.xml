@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsMessage" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="m_msginfo" property="mMsginfo" jdbcType="VARCHAR" />
+    <result column="m_reply" property="mReply" jdbcType="VARCHAR" />
+    <result column="m_msgtime" property="mMsgtime" jdbcType="DATE" />
+    <result column="m_replytime" property="mReplytime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, u_id, m_msginfo, m_reply, m_msgtime, m_replytime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_message
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_message
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsMessage" >
+    insert into tims_message (m_id, u_id, m_msginfo, 
+      m_reply, m_msgtime, m_replytime
+      )
+    values (#{mId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{mMsginfo,jdbcType=VARCHAR}, 
+      #{mReply,jdbcType=VARCHAR}, #{mMsgtime,jdbcType=DATE}, #{mReplytime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsMessage" >
+    insert into tims_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="mMsginfo != null" >
+        m_msginfo,
+      </if>
+      <if test="mReply != null" >
+        m_reply,
+      </if>
+      <if test="mMsgtime != null" >
+        m_msgtime,
+      </if>
+      <if test="mReplytime != null" >
+        m_replytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="mMsginfo != null" >
+        #{mMsginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mReply != null" >
+        #{mReply,jdbcType=VARCHAR},
+      </if>
+      <if test="mMsgtime != null" >
+        #{mMsgtime,jdbcType=DATE},
+      </if>
+      <if test="mReplytime != null" >
+        #{mReplytime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsMessage" >
+    update tims_message
+    <set >
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="mMsginfo != null" >
+        m_msginfo = #{mMsginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mReply != null" >
+        m_reply = #{mReply,jdbcType=VARCHAR},
+      </if>
+      <if test="mMsgtime != null" >
+        m_msgtime = #{mMsgtime,jdbcType=DATE},
+      </if>
+      <if test="mReplytime != null" >
+        m_replytime = #{mReplytime,jdbcType=DATE},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsMessage" >
+    update tims_message
+    set u_id = #{uId,jdbcType=INTEGER},
+      m_msginfo = #{mMsginfo,jdbcType=VARCHAR},
+      m_reply = #{mReply,jdbcType=VARCHAR},
+      m_msgtime = #{mMsgtime,jdbcType=DATE},
+      m_replytime = #{mReplytime,jdbcType=DATE}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>

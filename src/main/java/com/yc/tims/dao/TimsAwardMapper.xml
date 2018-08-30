@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsAwardMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsAward" >
+    <id column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="a_rank" property="aRank" jdbcType="VARCHAR" />
+    <result column="a_name" property="aName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_id, a_rank, a_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_award
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_award
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsAward" >
+    insert into tims_award (a_id, a_rank, a_name
+      )
+    values (#{aId,jdbcType=INTEGER}, #{aRank,jdbcType=VARCHAR}, #{aName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsAward" >
+    insert into tims_award
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="aRank != null" >
+        a_rank,
+      </if>
+      <if test="aName != null" >
+        a_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aRank != null" >
+        #{aRank,jdbcType=VARCHAR},
+      </if>
+      <if test="aName != null" >
+        #{aName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsAward" >
+    update tims_award
+    <set >
+      <if test="aRank != null" >
+        a_rank = #{aRank,jdbcType=VARCHAR},
+      </if>
+      <if test="aName != null" >
+        a_name = #{aName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsAward" >
+    update tims_award
+    set a_rank = #{aRank,jdbcType=VARCHAR},
+      a_name = #{aName,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+</mapper>

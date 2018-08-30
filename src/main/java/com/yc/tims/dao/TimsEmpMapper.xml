@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsEmpMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsEmp" >
+    <id column="emp_id" property="empId" jdbcType="INTEGER" />
+    <result column="emp_organ" property="empOrgan" jdbcType="VARCHAR" />
+    <result column="emp_name" property="empName" jdbcType="VARCHAR" />
+    <result column="emp_sex" property="empSex" jdbcType="VARCHAR" />
+    <result column="emp_native" property="empNative" jdbcType="VARCHAR" />
+    <result column="emp_graduateSchool" property="empGraduateschool" jdbcType="VARCHAR" />
+    <result column="emp_cultureStandand" property="empCulturestandand" jdbcType="VARCHAR" />
+    <result column="emp_graduateTime" property="empGraduatetime" jdbcType="DATE" />
+    <result column="emp_major" property="empMajor" jdbcType="VARCHAR" />
+    <result column="emp_jobPosition" property="empJobposition" jdbcType="VARCHAR" />
+    <result column="emp_workTime" property="empWorktime" jdbcType="DATE" />
+    <result column="emp_qualification" property="empQualification" jdbcType="VARCHAR" />
+    <result column="emp_qualificationTime" property="empQualificationtime" jdbcType="DATE" />
+    <result column="emp_identify" property="empIdentify" jdbcType="VARCHAR" />
+    <result column="emp_idcard" property="empIdcard" jdbcType="VARCHAR" />
+    <result column="emp_rank" property="empRank" jdbcType="VARCHAR" />
+    <result column="emp_series" property="empSeries" jdbcType="VARCHAR" />
+    <result column="emp_birthday" property="empBirthday" jdbcType="DATE" />
+    <result column="emp_remark" property="empRemark" jdbcType="VARCHAR" />
+    <result column="emp_password" property="empPassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    emp_id, emp_organ, emp_name, emp_sex, emp_native, emp_graduateSchool, emp_cultureStandand, 
+    emp_graduateTime, emp_major, emp_jobPosition, emp_workTime, emp_qualification, emp_qualificationTime, 
+    emp_identify, emp_idcard, emp_rank, emp_series, emp_birthday, emp_remark, emp_password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_emp
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_emp
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsEmp" >
+    insert into tims_emp (emp_id, emp_organ, emp_name, 
+      emp_sex, emp_native, emp_graduateSchool, 
+      emp_cultureStandand, emp_graduateTime, emp_major, 
+      emp_jobPosition, emp_workTime, emp_qualification, 
+      emp_qualificationTime, emp_identify, emp_idcard, 
+      emp_rank, emp_series, emp_birthday, 
+      emp_remark, emp_password)
+    values (#{empId,jdbcType=INTEGER}, #{empOrgan,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
+      #{empSex,jdbcType=VARCHAR}, #{empNative,jdbcType=VARCHAR}, #{empGraduateschool,jdbcType=VARCHAR}, 
+      #{empCulturestandand,jdbcType=VARCHAR}, #{empGraduatetime,jdbcType=DATE}, #{empMajor,jdbcType=VARCHAR}, 
+      #{empJobposition,jdbcType=VARCHAR}, #{empWorktime,jdbcType=DATE}, #{empQualification,jdbcType=VARCHAR}, 
+      #{empQualificationtime,jdbcType=DATE}, #{empIdentify,jdbcType=VARCHAR}, #{empIdcard,jdbcType=VARCHAR}, 
+      #{empRank,jdbcType=VARCHAR}, #{empSeries,jdbcType=VARCHAR}, #{empBirthday,jdbcType=DATE}, 
+      #{empRemark,jdbcType=VARCHAR}, #{empPassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsEmp" >
+    insert into tims_emp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="empId != null" >
+        emp_id,
+      </if>
+      <if test="empOrgan != null" >
+        emp_organ,
+      </if>
+      <if test="empName != null" >
+        emp_name,
+      </if>
+      <if test="empSex != null" >
+        emp_sex,
+      </if>
+      <if test="empNative != null" >
+        emp_native,
+      </if>
+      <if test="empGraduateschool != null" >
+        emp_graduateSchool,
+      </if>
+      <if test="empCulturestandand != null" >
+        emp_cultureStandand,
+      </if>
+      <if test="empGraduatetime != null" >
+        emp_graduateTime,
+      </if>
+      <if test="empMajor != null" >
+        emp_major,
+      </if>
+      <if test="empJobposition != null" >
+        emp_jobPosition,
+      </if>
+      <if test="empWorktime != null" >
+        emp_workTime,
+      </if>
+      <if test="empQualification != null" >
+        emp_qualification,
+      </if>
+      <if test="empQualificationtime != null" >
+        emp_qualificationTime,
+      </if>
+      <if test="empIdentify != null" >
+        emp_identify,
+      </if>
+      <if test="empIdcard != null" >
+        emp_idcard,
+      </if>
+      <if test="empRank != null" >
+        emp_rank,
+      </if>
+      <if test="empSeries != null" >
+        emp_series,
+      </if>
+      <if test="empBirthday != null" >
+        emp_birthday,
+      </if>
+      <if test="empRemark != null" >
+        emp_remark,
+      </if>
+      <if test="empPassword != null" >
+        emp_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="empId != null" >
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="empOrgan != null" >
+        #{empOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null" >
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empSex != null" >
+        #{empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="empNative != null" >
+        #{empNative,jdbcType=VARCHAR},
+      </if>
+      <if test="empGraduateschool != null" >
+        #{empGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="empCulturestandand != null" >
+        #{empCulturestandand,jdbcType=VARCHAR},
+      </if>
+      <if test="empGraduatetime != null" >
+        #{empGraduatetime,jdbcType=DATE},
+      </if>
+      <if test="empMajor != null" >
+        #{empMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="empJobposition != null" >
+        #{empJobposition,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorktime != null" >
+        #{empWorktime,jdbcType=DATE},
+      </if>
+      <if test="empQualification != null" >
+        #{empQualification,jdbcType=VARCHAR},
+      </if>
+      <if test="empQualificationtime != null" >
+        #{empQualificationtime,jdbcType=DATE},
+      </if>
+      <if test="empIdentify != null" >
+        #{empIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdcard != null" >
+        #{empIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="empRank != null" >
+        #{empRank,jdbcType=VARCHAR},
+      </if>
+      <if test="empSeries != null" >
+        #{empSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="empBirthday != null" >
+        #{empBirthday,jdbcType=DATE},
+      </if>
+      <if test="empRemark != null" >
+        #{empRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null" >
+        #{empPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsEmp" >
+    update tims_emp
+    <set >
+      <if test="empOrgan != null" >
+        emp_organ = #{empOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null" >
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empSex != null" >
+        emp_sex = #{empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="empNative != null" >
+        emp_native = #{empNative,jdbcType=VARCHAR},
+      </if>
+      <if test="empGraduateschool != null" >
+        emp_graduateSchool = #{empGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="empCulturestandand != null" >
+        emp_cultureStandand = #{empCulturestandand,jdbcType=VARCHAR},
+      </if>
+      <if test="empGraduatetime != null" >
+        emp_graduateTime = #{empGraduatetime,jdbcType=DATE},
+      </if>
+      <if test="empMajor != null" >
+        emp_major = #{empMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="empJobposition != null" >
+        emp_jobPosition = #{empJobposition,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorktime != null" >
+        emp_workTime = #{empWorktime,jdbcType=DATE},
+      </if>
+      <if test="empQualification != null" >
+        emp_qualification = #{empQualification,jdbcType=VARCHAR},
+      </if>
+      <if test="empQualificationtime != null" >
+        emp_qualificationTime = #{empQualificationtime,jdbcType=DATE},
+      </if>
+      <if test="empIdentify != null" >
+        emp_identify = #{empIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdcard != null" >
+        emp_idcard = #{empIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="empRank != null" >
+        emp_rank = #{empRank,jdbcType=VARCHAR},
+      </if>
+      <if test="empSeries != null" >
+        emp_series = #{empSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="empBirthday != null" >
+        emp_birthday = #{empBirthday,jdbcType=DATE},
+      </if>
+      <if test="empRemark != null" >
+        emp_remark = #{empRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null" >
+        emp_password = #{empPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsEmp" >
+    update tims_emp
+    set emp_organ = #{empOrgan,jdbcType=VARCHAR},
+      emp_name = #{empName,jdbcType=VARCHAR},
+      emp_sex = #{empSex,jdbcType=VARCHAR},
+      emp_native = #{empNative,jdbcType=VARCHAR},
+      emp_graduateSchool = #{empGraduateschool,jdbcType=VARCHAR},
+      emp_cultureStandand = #{empCulturestandand,jdbcType=VARCHAR},
+      emp_graduateTime = #{empGraduatetime,jdbcType=DATE},
+      emp_major = #{empMajor,jdbcType=VARCHAR},
+      emp_jobPosition = #{empJobposition,jdbcType=VARCHAR},
+      emp_workTime = #{empWorktime,jdbcType=DATE},
+      emp_qualification = #{empQualification,jdbcType=VARCHAR},
+      emp_qualificationTime = #{empQualificationtime,jdbcType=DATE},
+      emp_identify = #{empIdentify,jdbcType=VARCHAR},
+      emp_idcard = #{empIdcard,jdbcType=VARCHAR},
+      emp_rank = #{empRank,jdbcType=VARCHAR},
+      emp_series = #{empSeries,jdbcType=VARCHAR},
+      emp_birthday = #{empBirthday,jdbcType=DATE},
+      emp_remark = #{empRemark,jdbcType=VARCHAR},
+      emp_password = #{empPassword,jdbcType=VARCHAR}
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </update>
+</mapper>

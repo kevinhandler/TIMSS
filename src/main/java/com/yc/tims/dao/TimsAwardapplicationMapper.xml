@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsAwardapplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsAwardapplication" >
+    <id column="aa_id" property="aaId" jdbcType="INTEGER" />
+    <result column="tp_id" property="tpId" jdbcType="INTEGER" />
+    <result column="ach_id" property="achId" jdbcType="INTEGER" />
+    <result column="ach_level" property="achLevel" jdbcType="VARCHAR" />
+    <result column="ach_rank" property="achRank" jdbcType="VARCHAR" />
+    <result column="aa_attch" property="aaAttch" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    aa_id, tp_id, ach_id, ach_level, ach_rank, aa_attch
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_awardapplication
+    where aa_id = #{aaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_awardapplication
+    where aa_id = #{aaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsAwardapplication" >
+    insert into tims_awardapplication (aa_id, tp_id, ach_id, 
+      ach_level, ach_rank, aa_attch
+      )
+    values (#{aaId,jdbcType=INTEGER}, #{tpId,jdbcType=INTEGER}, #{achId,jdbcType=INTEGER}, 
+      #{achLevel,jdbcType=VARCHAR}, #{achRank,jdbcType=VARCHAR}, #{aaAttch,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsAwardapplication" >
+    insert into tims_awardapplication
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aaId != null" >
+        aa_id,
+      </if>
+      <if test="tpId != null" >
+        tp_id,
+      </if>
+      <if test="achId != null" >
+        ach_id,
+      </if>
+      <if test="achLevel != null" >
+        ach_level,
+      </if>
+      <if test="achRank != null" >
+        ach_rank,
+      </if>
+      <if test="aaAttch != null" >
+        aa_attch,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aaId != null" >
+        #{aaId,jdbcType=INTEGER},
+      </if>
+      <if test="tpId != null" >
+        #{tpId,jdbcType=INTEGER},
+      </if>
+      <if test="achId != null" >
+        #{achId,jdbcType=INTEGER},
+      </if>
+      <if test="achLevel != null" >
+        #{achLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="achRank != null" >
+        #{achRank,jdbcType=VARCHAR},
+      </if>
+      <if test="aaAttch != null" >
+        #{aaAttch,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsAwardapplication" >
+    update tims_awardapplication
+    <set >
+      <if test="tpId != null" >
+        tp_id = #{tpId,jdbcType=INTEGER},
+      </if>
+      <if test="achId != null" >
+        ach_id = #{achId,jdbcType=INTEGER},
+      </if>
+      <if test="achLevel != null" >
+        ach_level = #{achLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="achRank != null" >
+        ach_rank = #{achRank,jdbcType=VARCHAR},
+      </if>
+      <if test="aaAttch != null" >
+        aa_attch = #{aaAttch,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where aa_id = #{aaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsAwardapplication" >
+    update tims_awardapplication
+    set tp_id = #{tpId,jdbcType=INTEGER},
+      ach_id = #{achId,jdbcType=INTEGER},
+      ach_level = #{achLevel,jdbcType=VARCHAR},
+      ach_rank = #{achRank,jdbcType=VARCHAR},
+      aa_attch = #{aaAttch,jdbcType=VARCHAR}
+    where aa_id = #{aaId,jdbcType=INTEGER}
+  </update>
+</mapper>

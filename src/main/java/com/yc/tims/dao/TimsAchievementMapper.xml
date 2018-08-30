@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsAchievementMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsAchievement" >
+    <id column="ach_id" property="achId" jdbcType="INTEGER" />
+    <result column="tp_id" property="tpId" jdbcType="INTEGER" />
+    <result column="ach_content" property="achContent" jdbcType="VARCHAR" />
+    <result column="ach_extension" property="achExtension" jdbcType="VARCHAR" />
+    <result column="ach_rank" property="achRank" jdbcType="VARCHAR" />
+    <result column="ach_attch" property="achAttch" jdbcType="VARCHAR" />
+    <result column="ach_checktime" property="achChecktime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ach_id, tp_id, ach_content, ach_extension, ach_rank, ach_attch, ach_checktime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_achievement
+    where ach_id = #{achId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_achievement
+    where ach_id = #{achId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsAchievement" >
+    insert into tims_achievement (ach_id, tp_id, ach_content, 
+      ach_extension, ach_rank, ach_attch, 
+      ach_checktime)
+    values (#{achId,jdbcType=INTEGER}, #{tpId,jdbcType=INTEGER}, #{achContent,jdbcType=VARCHAR}, 
+      #{achExtension,jdbcType=VARCHAR}, #{achRank,jdbcType=VARCHAR}, #{achAttch,jdbcType=VARCHAR}, 
+      #{achChecktime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsAchievement" >
+    insert into tims_achievement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="achId != null" >
+        ach_id,
+      </if>
+      <if test="tpId != null" >
+        tp_id,
+      </if>
+      <if test="achContent != null" >
+        ach_content,
+      </if>
+      <if test="achExtension != null" >
+        ach_extension,
+      </if>
+      <if test="achRank != null" >
+        ach_rank,
+      </if>
+      <if test="achAttch != null" >
+        ach_attch,
+      </if>
+      <if test="achChecktime != null" >
+        ach_checktime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="achId != null" >
+        #{achId,jdbcType=INTEGER},
+      </if>
+      <if test="tpId != null" >
+        #{tpId,jdbcType=INTEGER},
+      </if>
+      <if test="achContent != null" >
+        #{achContent,jdbcType=VARCHAR},
+      </if>
+      <if test="achExtension != null" >
+        #{achExtension,jdbcType=VARCHAR},
+      </if>
+      <if test="achRank != null" >
+        #{achRank,jdbcType=VARCHAR},
+      </if>
+      <if test="achAttch != null" >
+        #{achAttch,jdbcType=VARCHAR},
+      </if>
+      <if test="achChecktime != null" >
+        #{achChecktime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsAchievement" >
+    update tims_achievement
+    <set >
+      <if test="tpId != null" >
+        tp_id = #{tpId,jdbcType=INTEGER},
+      </if>
+      <if test="achContent != null" >
+        ach_content = #{achContent,jdbcType=VARCHAR},
+      </if>
+      <if test="achExtension != null" >
+        ach_extension = #{achExtension,jdbcType=VARCHAR},
+      </if>
+      <if test="achRank != null" >
+        ach_rank = #{achRank,jdbcType=VARCHAR},
+      </if>
+      <if test="achAttch != null" >
+        ach_attch = #{achAttch,jdbcType=VARCHAR},
+      </if>
+      <if test="achChecktime != null" >
+        ach_checktime = #{achChecktime,jdbcType=DATE},
+      </if>
+    </set>
+    where ach_id = #{achId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsAchievement" >
+    update tims_achievement
+    set tp_id = #{tpId,jdbcType=INTEGER},
+      ach_content = #{achContent,jdbcType=VARCHAR},
+      ach_extension = #{achExtension,jdbcType=VARCHAR},
+      ach_rank = #{achRank,jdbcType=VARCHAR},
+      ach_attch = #{achAttch,jdbcType=VARCHAR},
+      ach_checktime = #{achChecktime,jdbcType=DATE}
+    where ach_id = #{achId,jdbcType=INTEGER}
+  </update>
+</mapper>

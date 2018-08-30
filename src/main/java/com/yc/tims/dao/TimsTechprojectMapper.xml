@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsTechprojectMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsTechproject" >
+    <id column="tp_id" property="tpId" jdbcType="INTEGER" />
+    <result column="tp_name" property="tpName" jdbcType="VARCHAR" />
+    <result column="pa_id" property="paId" jdbcType="INTEGER" />
+    <result column="tp_organizer" property="tpOrganizer" jdbcType="VARCHAR" />
+    <result column="tp_cooperation" property="tpCooperation" jdbcType="VARCHAR" />
+    <result column="tp_startdate" property="tpStartdate" jdbcType="DATE" />
+    <result column="tp_enddate" property="tpEnddate" jdbcType="DATE" />
+    <result column="tp_firstleader" property="tpFirstleader" jdbcType="VARCHAR" />
+    <result column="tp_secondleader" property="tpSecondleader" jdbcType="VARCHAR" />
+    <result column="tp_investment" property="tpInvestment" jdbcType="DOUBLE" />
+    <result column="tp_pay" property="tpPay" jdbcType="DOUBLE" />
+    <result column="tp_attch" property="tpAttch" jdbcType="VARCHAR" />
+    <result column="tp_status" property="tpStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tp_id, tp_name, pa_id, tp_organizer, tp_cooperation, tp_startdate, tp_enddate, tp_firstleader, 
+    tp_secondleader, tp_investment, tp_pay, tp_attch, tp_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_techproject
+    where tp_id = #{tpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_techproject
+    where tp_id = #{tpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsTechproject" >
+    insert into tims_techproject (tp_id, tp_name, pa_id, 
+      tp_organizer, tp_cooperation, tp_startdate, 
+      tp_enddate, tp_firstleader, tp_secondleader, 
+      tp_investment, tp_pay, tp_attch, 
+      tp_status)
+    values (#{tpId,jdbcType=INTEGER}, #{tpName,jdbcType=VARCHAR}, #{paId,jdbcType=INTEGER}, 
+      #{tpOrganizer,jdbcType=VARCHAR}, #{tpCooperation,jdbcType=VARCHAR}, #{tpStartdate,jdbcType=DATE}, 
+      #{tpEnddate,jdbcType=DATE}, #{tpFirstleader,jdbcType=VARCHAR}, #{tpSecondleader,jdbcType=VARCHAR}, 
+      #{tpInvestment,jdbcType=DOUBLE}, #{tpPay,jdbcType=DOUBLE}, #{tpAttch,jdbcType=VARCHAR}, 
+      #{tpStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsTechproject" >
+    insert into tims_techproject
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tpId != null" >
+        tp_id,
+      </if>
+      <if test="tpName != null" >
+        tp_name,
+      </if>
+      <if test="paId != null" >
+        pa_id,
+      </if>
+      <if test="tpOrganizer != null" >
+        tp_organizer,
+      </if>
+      <if test="tpCooperation != null" >
+        tp_cooperation,
+      </if>
+      <if test="tpStartdate != null" >
+        tp_startdate,
+      </if>
+      <if test="tpEnddate != null" >
+        tp_enddate,
+      </if>
+      <if test="tpFirstleader != null" >
+        tp_firstleader,
+      </if>
+      <if test="tpSecondleader != null" >
+        tp_secondleader,
+      </if>
+      <if test="tpInvestment != null" >
+        tp_investment,
+      </if>
+      <if test="tpPay != null" >
+        tp_pay,
+      </if>
+      <if test="tpAttch != null" >
+        tp_attch,
+      </if>
+      <if test="tpStatus != null" >
+        tp_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tpId != null" >
+        #{tpId,jdbcType=INTEGER},
+      </if>
+      <if test="tpName != null" >
+        #{tpName,jdbcType=VARCHAR},
+      </if>
+      <if test="paId != null" >
+        #{paId,jdbcType=INTEGER},
+      </if>
+      <if test="tpOrganizer != null" >
+        #{tpOrganizer,jdbcType=VARCHAR},
+      </if>
+      <if test="tpCooperation != null" >
+        #{tpCooperation,jdbcType=VARCHAR},
+      </if>
+      <if test="tpStartdate != null" >
+        #{tpStartdate,jdbcType=DATE},
+      </if>
+      <if test="tpEnddate != null" >
+        #{tpEnddate,jdbcType=DATE},
+      </if>
+      <if test="tpFirstleader != null" >
+        #{tpFirstleader,jdbcType=VARCHAR},
+      </if>
+      <if test="tpSecondleader != null" >
+        #{tpSecondleader,jdbcType=VARCHAR},
+      </if>
+      <if test="tpInvestment != null" >
+        #{tpInvestment,jdbcType=DOUBLE},
+      </if>
+      <if test="tpPay != null" >
+        #{tpPay,jdbcType=DOUBLE},
+      </if>
+      <if test="tpAttch != null" >
+        #{tpAttch,jdbcType=VARCHAR},
+      </if>
+      <if test="tpStatus != null" >
+        #{tpStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsTechproject" >
+    update tims_techproject
+    <set >
+      <if test="tpName != null" >
+        tp_name = #{tpName,jdbcType=VARCHAR},
+      </if>
+      <if test="paId != null" >
+        pa_id = #{paId,jdbcType=INTEGER},
+      </if>
+      <if test="tpOrganizer != null" >
+        tp_organizer = #{tpOrganizer,jdbcType=VARCHAR},
+      </if>
+      <if test="tpCooperation != null" >
+        tp_cooperation = #{tpCooperation,jdbcType=VARCHAR},
+      </if>
+      <if test="tpStartdate != null" >
+        tp_startdate = #{tpStartdate,jdbcType=DATE},
+      </if>
+      <if test="tpEnddate != null" >
+        tp_enddate = #{tpEnddate,jdbcType=DATE},
+      </if>
+      <if test="tpFirstleader != null" >
+        tp_firstleader = #{tpFirstleader,jdbcType=VARCHAR},
+      </if>
+      <if test="tpSecondleader != null" >
+        tp_secondleader = #{tpSecondleader,jdbcType=VARCHAR},
+      </if>
+      <if test="tpInvestment != null" >
+        tp_investment = #{tpInvestment,jdbcType=DOUBLE},
+      </if>
+      <if test="tpPay != null" >
+        tp_pay = #{tpPay,jdbcType=DOUBLE},
+      </if>
+      <if test="tpAttch != null" >
+        tp_attch = #{tpAttch,jdbcType=VARCHAR},
+      </if>
+      <if test="tpStatus != null" >
+        tp_status = #{tpStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tp_id = #{tpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsTechproject" >
+    update tims_techproject
+    set tp_name = #{tpName,jdbcType=VARCHAR},
+      pa_id = #{paId,jdbcType=INTEGER},
+      tp_organizer = #{tpOrganizer,jdbcType=VARCHAR},
+      tp_cooperation = #{tpCooperation,jdbcType=VARCHAR},
+      tp_startdate = #{tpStartdate,jdbcType=DATE},
+      tp_enddate = #{tpEnddate,jdbcType=DATE},
+      tp_firstleader = #{tpFirstleader,jdbcType=VARCHAR},
+      tp_secondleader = #{tpSecondleader,jdbcType=VARCHAR},
+      tp_investment = #{tpInvestment,jdbcType=DOUBLE},
+      tp_pay = #{tpPay,jdbcType=DOUBLE},
+      tp_attch = #{tpAttch,jdbcType=VARCHAR},
+      tp_status = #{tpStatus,jdbcType=VARCHAR}
+    where tp_id = #{tpId,jdbcType=INTEGER}
+  </update>
+</mapper>
