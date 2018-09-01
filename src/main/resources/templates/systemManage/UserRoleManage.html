@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" th:href="@{css/achieveSelect.css}">
+<script src="https://code.jquery.com/jquery.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+<div class="front">
+	<label>姓名：</label><input type="text"/>&nbsp;&nbsp;
+	<label>角色：</label><input type="text"/>
+	<button type="button" class="btn btn-default btn-sm">
+		<span class="glyphicon glyphicon-search"></span> 搜索
+	</button>
+</div>
+
+<table class="table table-bordered"  width="80%" align="center">
+  <thead>
+    <tr>
+      <th>编号</th>
+      <th>姓名</th>
+      <th>角色</th>
+      <th>性别</th>
+      <th>出生日期</th>
+      <th>联系电话</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1001</td>
+      <td>yc</td>
+      <td>
+         <select>
+           <option value="系统管理员">系统管理员</option>
+         </select>
+      </td>
+      <td>男</td>
+      <td>1986-9-08</td>
+      <td>15574328756</td>
+      <td><a href="">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">删除</a></td>
+    </tr>
+  </tbody>
+</table>
+<div class="btn">
+    <button type="button" class="btn btn-default" >保  存</button>
+</div>
+</body>
+</html>

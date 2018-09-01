@@ -3,8 +3,8 @@
 <mapper namespace="com.yc.tims.dao.TimsProjectapplyMapper" >
   <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsProjectapply" >
     <id column="pa_id" property="paId" jdbcType="INTEGER" />
+    <result column="pa_name" property="paName" jdbcType="VARCHAR" />
     <result column="pa_sort" property="paSort" jdbcType="VARCHAR" />
-    <result column="tp_id" property="tpId" jdbcType="INTEGER" />
     <result column="pa_organ" property="paOrgan" jdbcType="VARCHAR" />
     <result column="pa_leader" property="paLeader" jdbcType="VARCHAR" />
     <result column="pa_funds" property="paFunds" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
     <result column="pa_status" property="paStatus" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    pa_id, pa_sort, tp_id, pa_organ, pa_leader, pa_funds, pa_content, pa_remark, pa_attrch, 
+    pa_id, pa_name, pa_sort, pa_organ, pa_leader, pa_funds, pa_content, pa_remark, pa_attrch, 
     pa_leaderoption, pa_scientistoption, pa_status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -25,17 +25,28 @@
     from tims_projectapply
     where pa_id = #{paId,jdbcType=INTEGER}
   </select>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	 select 
+    <include refid="Base_Column_List" />
+    from tims_projectapply
+    <where>
+    	<if test="paName !=null and paName !=''">
+    		pa_name = #{paName}
+    	</if>
+    </where>
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tims_projectapply
     where pa_id = #{paId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yc.tims.po.TimsProjectapply" >
-    insert into tims_projectapply (pa_id, pa_sort, tp_id, 
+    insert into tims_projectapply (pa_id, pa_name, pa_sort, 
       pa_organ, pa_leader, pa_funds, 
       pa_content, pa_remark, pa_attrch, 
       pa_leaderoption, pa_scientistoption, pa_status
       )
-    values (#{paId,jdbcType=INTEGER}, #{paSort,jdbcType=VARCHAR}, #{tpId,jdbcType=INTEGER}, 
+    values (#{paId,jdbcType=INTEGER}, #{paName,jdbcType=VARCHAR}, #{paSort,jdbcType=VARCHAR}, 
       #{paOrgan,jdbcType=VARCHAR}, #{paLeader,jdbcType=VARCHAR}, #{paFunds,jdbcType=VARCHAR}, 
       #{paContent,jdbcType=DOUBLE}, #{paRemark,jdbcType=VARCHAR}, #{paAttrch,jdbcType=VARCHAR}, 
       #{paLeaderoption,jdbcType=VARCHAR}, #{paScientistoption,jdbcType=VARCHAR}, #{paStatus,jdbcType=VARCHAR}
@@ -47,11 +58,11 @@
       <if test="paId != null" >
         pa_id,
       </if>
+      <if test="paName != null" >
+        pa_name,
+      </if>
       <if test="paSort != null" >
         pa_sort,
-      </if>
-      <if test="tpId != null" >
-        tp_id,
       </if>
       <if test="paOrgan != null" >
         pa_organ,
@@ -85,11 +96,11 @@
       <if test="paId != null" >
         #{paId,jdbcType=INTEGER},
       </if>
+      <if test="paName != null" >
+        #{paName,jdbcType=VARCHAR},
+      </if>
       <if test="paSort != null" >
         #{paSort,jdbcType=VARCHAR},
-      </if>
-      <if test="tpId != null" >
-        #{tpId,jdbcType=INTEGER},
       </if>
       <if test="paOrgan != null" >
         #{paOrgan,jdbcType=VARCHAR},
@@ -123,11 +134,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsProjectapply" >
     update tims_projectapply
     <set >
+      <if test="paName != null" >
+        pa_name = #{paName,jdbcType=VARCHAR},
+      </if>
       <if test="paSort != null" >
         pa_sort = #{paSort,jdbcType=VARCHAR},
-      </if>
-      <if test="tpId != null" >
-        tp_id = #{tpId,jdbcType=INTEGER},
       </if>
       <if test="paOrgan != null" >
         pa_organ = #{paOrgan,jdbcType=VARCHAR},
@@ -161,8 +172,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsProjectapply" >
     update tims_projectapply
-    set pa_sort = #{paSort,jdbcType=VARCHAR},
-      tp_id = #{tpId,jdbcType=INTEGER},
+    set pa_name = #{paName,jdbcType=VARCHAR},
+      pa_sort = #{paSort,jdbcType=VARCHAR},
       pa_organ = #{paOrgan,jdbcType=VARCHAR},
       pa_leader = #{paLeader,jdbcType=VARCHAR},
       pa_funds = #{paFunds,jdbcType=VARCHAR},

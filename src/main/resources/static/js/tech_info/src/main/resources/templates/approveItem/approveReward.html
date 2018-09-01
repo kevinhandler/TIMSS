@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+</head>
+<body>
+	<section class="mtb">
+		<select class="select">
+			<option>订单状态</option>
+			<option>待付款</option>
+			<option>待发货</option>
+			<option>待评价</option>
+		</select> 
+		<input type="text" class="textbox textbox_225" placeholder="请输入项目名称..." /> 
+		<input type="button" value="查询" class="group_btn" />
+	</section>
+	<table class="table">
+		<tr>
+			<th>项目名称</th>
+			<th>奖励级别</th>
+			<th>奖励等级</th>
+			<th>审批状态</th>
+			<th>操作</th>
+		</tr>
+		<tr align="center">
+			<td>油气勘探项目</td>
+			<td>省级</td>
+			<td>一等</td>
+			<td>已通过</td>
+			<td class="center">
+				<a href="#" title="详情" class="link_icon" target="_blank">&#118;</a> 
+			</td>
+		</tr>
+	</table>
+	<aside class="paging">
+		<a href="#">第一页</a> 
+		<a>1</a> 
+		<a>2</a> 
+		<a>3</a> 
+		<a>…</a> 
+		<a>1004</a> 
+		<a>最后一页</a>
+	</aside>
+</body>
+</html>

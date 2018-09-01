@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+<link rel="stylesheet" th:href="@{/css/achieveSelect.css}">
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery.js}"></script>
+<style>
+.textInfo {
+	width: 230px;
+	/*border: 1px solid #16A085;*/
+}
+</style>
+</head>
+<body>
+<form name="projectapply" action="">
+<table class="table-bordered" width="70%" align="center">
+	<caption>科技项目立项申报</caption>
+	<tr>
+		<td><span style="color: red">*</span><span>项目名称：</span></td>
+		<td><input class="textInfo" type="text" name="projectname" id="projectname"/><span>错误提示</span></td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>类别：</span></td>
+		<td>
+			<input type="radio" name="sort" value="0">油气勘探<br/>
+			<input type="radio" name="sort" value="1">地质研究<br/>
+			<input type="radio" name="sort" value="2">油藏工程研究与评价<br/>
+			<input type="radio" name="sort" value="3">油气开采及新技术<br/>
+			<input type="radio" name="sort" value="4">节能环保<br/>
+			<input type="radio" name="sort" value="5">信息化<br/>
+			<input type="radio" name="sort" value="6">其他<br/>
+		</td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>申报单位：</span></td>
+		<td>
+			<input type="text" name="organ" id="organ"/>
+			<div class="btn-group">
+    			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">选择
+        			<span class="caret"></span>
+    			</button>
+    			<ul class="dropdown-menu" role="menu">
+        			<li>
+            			<a href="#">功能</a>
+       			 	</li>
+        			<li>
+            			<a href="#">另一个功能</a>
+        			</li>
+       				<li>
+            			<a href="#">其他</a>
+        			</li>
+       	 			<li>
+            			<a href="#">分离的链接</a>
+        			</li>
+   				</ul>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>项目组长：</span></td>
+		<td><input class="textInfo" type="text" name="leader" id="leader"/></td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>项目经费（万元）：</span></td>
+		<td><input class="textInfo" type="text" name="funds" id="funds"/></td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>内容及目的：</span></td>
+		<td><textarea name="content" id="content" cols="60" rows="4"></textarea></td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>备注：</span></td>
+		<td><textarea name="remark" id="remark" cols="60" rows="4"></textarea></td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>附件：</span></td>
+		<td>
+			<input class="textInfo" type="text" name="attach" id="attach">
+			<input type="file" />
+		</td>
+	</tr>
+</table>
+<div class="btn">
+   <button type="submit" class="btn btn-default btn-sm">提交</button>
+   <button type="button" class="btn btn-default btn-sm">重置</button>
+</div>
+</form>
+</body>
+</html>

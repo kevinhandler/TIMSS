@@ -20,4 +20,5 @@ public interface TimsEmpMapper {
     int updateByPrimaryKey(TimsEmp record);
     @Select("SELECT e.* ,ur.role_id from tims_emp  e , user_role ur where e.emp_id = ur.user_id and e.emp_name =#{name} and e.emp_password=#{password}")
     TimsEmp isLogin(String name,String password);
+   
 }

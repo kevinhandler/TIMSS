@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+<link rel="stylesheet" th:href="@{/css/achieveSelect.css}">
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery.js}"></script>
+<style>
+.textInfo {
+	width: 230px;
+	/*border: 1px solid #16A085;*/
+}
+</style>
+</head>
+<body>
+<form name="manageproject" action="">
+<table class="table-bordered" width="70%" align="center">
+	<caption>科技项目实施管理</caption>
+	<tr>
+		<td><span>项目名称：</span></td>
+		<td><input class="textInfo" type="text" name="projectname" id="projectname"/><span>错误提示</span></td>
+	</tr>
+	<tr>
+		<td><span>承担单位：</span></td>
+		<td>
+			<input class="textInfo" type="text" name="organizer" id="organizer"/>
+		</td>
+	</tr>
+	<tr>
+		<td><span>协作单位：</span></td>
+		<td>
+			<input class="textInfo" type="text" name="cooperation" id="cooperation"/>
+		</td>
+	</tr>
+	<tr>
+		<td><span>合同起始时间：</span></td>
+		<td><input class="textInfo" type="date" name="startdate" id="startdate"/></td>
+	</tr>
+	<tr>
+		<td><span>合同结束时间：</span></td>
+		<td><input class="textInfo" type="date" name="enddate" id="enddate"/></td>
+	</tr>
+	<tr>
+		<td><span>甲方项目负责人：</span></td>
+		<td><input class="textInfo" type="text" name="firstleader" id="firstleader"/></td>
+	</tr>
+	<tr>
+		<td><span>乙方项目负责人：</span></td>
+		<td><input class="textInfo" type="text" name="secondleader" id="secondleader"/></td>
+	</tr>
+	<tr>
+		<td><span>项目投资（万元）：</span></td>
+		<td>
+			<input class="textInfo" type="text" name="investment" id="investment"/>
+		</td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>支付情况：</span></td>
+		<td><input class="textInfo" type="text" name="pay" id="pay"/></td>
+	</tr>
+	<tr>
+		<td><span style="color: red">*</span><span>附件：</span></td>
+		<td>
+			<input class="textInfo" type="text" name="attach" id="attach">
+			<input type="file" />
+		</td>
+	</tr>
+	<tr>
+	</tr>
+</table>
+<div class="btn">
+   <button type="button" class="btn btn-default btn-sm">提  交</button>
+   <button type="button" class="btn btn-default btn-sm">保存草稿</button>
+   <button type="button" class="btn btn-default btn-sm">重  置</button>
+</div>
+</form>
+</body>
+</html>

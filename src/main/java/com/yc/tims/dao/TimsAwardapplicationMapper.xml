@@ -18,6 +18,7 @@
     from tims_awardapplication
     where aa_id = #{aaId,jdbcType=INTEGER}
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tims_awardapplication
     where aa_id = #{aaId,jdbcType=INTEGER}

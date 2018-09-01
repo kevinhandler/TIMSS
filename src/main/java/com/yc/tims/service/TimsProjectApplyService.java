@@ -1,5 +1,8 @@
 package com.yc.tims.service;
 
+import java.util.List;
+
+import com.github.pagehelper.PageInfo;
 import com.yc.tims.po.TimsProjectapply;
 
 public interface TimsProjectApplyService {
@@ -15,4 +18,6 @@ public interface TimsProjectApplyService {
     int updateByPrimaryKeySelective(TimsProjectapply record);
 
     int updateByPrimaryKey(TimsProjectapply record);
+    PageInfo findByPage(Integer n,Integer size,String paName);
+    
 }

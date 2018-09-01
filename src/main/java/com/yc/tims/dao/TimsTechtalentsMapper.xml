@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.tims.dao.TimsTechtalentsMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.tims.po.TimsTechtalents" >
+    <id column="tt_id" property="ttId" jdbcType="INTEGER" />
+    <result column="emp_id" property="empId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tt_id, emp_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tims_techtalents
+    where tt_id = #{ttId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tims_techtalents
+    where tt_id = #{ttId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.tims.po.TimsTechtalents" >
+    insert into tims_techtalents (tt_id, emp_id)
+    values (#{ttId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.tims.po.TimsTechtalents" >
+    insert into tims_techtalents
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ttId != null" >
+        tt_id,
+      </if>
+      <if test="empId != null" >
+        emp_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ttId != null" >
+        #{ttId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null" >
+        #{empId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.tims.po.TimsTechtalents" >
+    update tims_techtalents
+    <set >
+      <if test="empId != null" >
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tt_id = #{ttId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.tims.po.TimsTechtalents" >
+    update tims_techtalents
+    set emp_id = #{empId,jdbcType=INTEGER}
+    where tt_id = #{ttId,jdbcType=INTEGER}
+  </update>
+</mapper>

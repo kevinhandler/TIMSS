@@ -13,7 +13,7 @@ import com.yc.tims.service.TimsAdminService;
 import com.yc.tims.service.TimsEmpService;
 
 @Controller
-public class loginController {
+public class EmpController {
 
 	@Autowired
 	private TimsEmpService timsEmpService;
@@ -30,7 +30,7 @@ public class loginController {
 		System.out.println("emp:"+emp);
 		if (emp !=null) {
 			session.setAttribute("loginEmp", emp);
-			return "main";
+			return "index_v1";
 		}
 		return "login";
 	}

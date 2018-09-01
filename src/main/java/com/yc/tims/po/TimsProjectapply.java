@@ -3,9 +3,9 @@ package com.yc.tims.po;
 public class TimsProjectapply {
     private Integer paId;
 
-    private String paSort;
+    private String paName;
 
-    private Integer tpId;
+    private String paSort;
 
     private String paOrgan;
 
@@ -26,10 +26,9 @@ public class TimsProjectapply {
     private String paStatus;
 
     
-    
     @Override
 	public String toString() {
-		return "TimsProjectapply [paId=" + paId + ", paSort=" + paSort + ", tpId=" + tpId + ", paOrgan=" + paOrgan
+		return "TimsProjectapply [paId=" + paId + ", paName=" + paName + ", paSort=" + paSort + ", paOrgan=" + paOrgan
 				+ ", paLeader=" + paLeader + ", paFunds=" + paFunds + ", paContent=" + paContent + ", paRemark="
 				+ paRemark + ", paAttrch=" + paAttrch + ", paLeaderoption=" + paLeaderoption + ", paScientistoption="
 				+ paScientistoption + ", paStatus=" + paStatus + "]";
@@ -43,20 +42,20 @@ public class TimsProjectapply {
         this.paId = paId;
     }
 
+    public String getPaName() {
+        return paName;
+    }
+
+    public void setPaName(String paName) {
+        this.paName = paName == null ? null : paName.trim();
+    }
+
     public String getPaSort() {
         return paSort;
     }
 
     public void setPaSort(String paSort) {
         this.paSort = paSort == null ? null : paSort.trim();
-    }
-
-    public Integer getTpId() {
-        return tpId;
-    }
-
-    public void setTpId(Integer tpId) {
-        this.tpId = tpId;
     }
 
     public String getPaOrgan() {

@@ -1,5 +1,7 @@
 package com.yc.tims.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.yc.tims.po.TimsProjectapply;
@@ -17,4 +19,5 @@ public interface TimsProjectapplyMapper {
     int updateByPrimaryKeySelective(TimsProjectapply record);
 
     int updateByPrimaryKey(TimsProjectapply record);
+    List<TimsProjectapply> findByPage(Integer n,Integer size,String paName);
 }
